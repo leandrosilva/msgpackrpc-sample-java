@@ -3,7 +3,7 @@ package msgpack.rpc.sample.server;
 import org.msgpack.rpc.Server;
 import org.msgpack.rpc.loop.EventLoop;
 
-public class ServerApp {
+public class MathServer {
 
 	public int add(int a, int b) {
 		return a + b;
@@ -25,10 +25,10 @@ public class ServerApp {
         EventLoop loop = EventLoop.defaultEventLoop();
  
         Server svr = new Server();
-        svr.serve(new ServerApp());
+        svr.serve(new MathServer());
         svr.listen(1978);
         
-        System.out.println("Server [1] listening on 1978");
+        System.out.println("MathServer listening on 1978");
  
         loop.join();
     }

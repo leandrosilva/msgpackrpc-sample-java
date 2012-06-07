@@ -5,14 +5,14 @@ import org.msgpack.rpc.loop.EventLoop;
 
 public class ClientApp {
 	private static class SpawnRequest {
-		private SpawnRequest(final int i, final int k, final RPCInterface iface) {
-        	new Thread(new Runnable() {
+		private SpawnRequest(final int clientCount, final int requestCount, final RPCInterface iface) {
+			new Thread(new Runnable() {
 				public void run() {
-					for (int j = 1; j <= k; j++) {
-			        	System.out.println("(" + i + ":" + j + ") 10 + 2 = " + iface.add(10, 2));
-			        	System.out.println("(" + i + ":" + j + ") 10 - 2 = " + iface.sub(10, 2));
-			        	System.out.println("(" + i + ":" + j + ") 10 * 2 = " + iface.mul(10, 2));
-			        	System.out.println("(" + i + ":" + j + ") 10 / 2 = " + iface.div(10, 2));
+					for (int rc = 1; rc <= requestCount; rc++) {
+			        	System.out.println("(" + clientCount + ":" + rc + ") 10 + 2 = " + iface.add(10, 2));
+			        	System.out.println("(" + clientCount + ":" + rc + ") 10 - 2 = " + iface.sub(10, 2));
+			        	System.out.println("(" + clientCount + ":" + rc + ") 10 * 2 = " + iface.mul(10, 2));
+			        	System.out.println("(" + clientCount + ":" + rc + ") 10 / 2 = " + iface.div(10, 2));
 					}
 				}
 			}).start();
@@ -29,13 +29,16 @@ public class ClientApp {
     public static void main(String[] args) throws Exception {
         EventLoop loop = EventLoop.defaultEventLoop();
  
-        Client cli = new Client("localhost", 1978, loop);
-        RPCInterface iface = cli.proxy(RPCInterface.class);
+        Client client = new Client("localhost", 1978, loop);
+        RPCInterface iface = client.proxy(RPCInterface.class);
 
-        for (int i = 10; i <= 50; i++) {
-        	new SpawnRequest(i, 1, iface);
-        }
+        final int CLIENT_COUNT = 1;
+        final int REQUEST_COUNT = 1;
         
-        System.out.println("What else?");
+        System.out.println("Spawning " + CLIENT_COUNT + " clients to perform " + REQUEST_COUNT + " requests each");
+        
+    	for (int cc = 1; cc <= CLIENT_COUNT; cc++) {
+        	new SpawnRequest(cc, REQUEST_COUNT, iface);
+        }
     }
 }
