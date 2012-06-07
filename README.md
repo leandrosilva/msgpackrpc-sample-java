@@ -24,10 +24,13 @@ A sample of client and server in Clojure:
 
 * [https://github.com/leandrosilva/msgpackrpc-sample-clojure](https://github.com/leandrosilva/msgpackrpc-sample-clojure)
 
+Other sample of client and server in Ruby:
+
+* [https://github.com/leandrosilva/msgpackrpc-sample-ruby](https://github.com/leandrosilva/msgpackrpc-sample-ruby)
+
 And, of course, you can mix them the way you want:
 
-* Java serve with Clojure client
-* Clojure server with Java client
+* [Java|Ruby|Clojure] server with [Java|Ruby|Clojure] client
 
 ## License
 
