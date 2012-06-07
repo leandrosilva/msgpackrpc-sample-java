@@ -10,7 +10,9 @@ This is a sample of a MessagePack-RPC client/server application built in Java. R
 
 ## Usage
 
-You can just import the project to Eclipse and try it there. Or you might want to use Maven directly from command line with two terminal instances, this is up to you, my friend.
+    $ git clone https://github.com/leandrosilva/msgpackrpc-sample-java
+
+After, you can just import the project to Eclipse and try it there. Or you might want to use Maven directly from command line with two terminal instances, this is up to you, my friend.
 
 ## What else?
 
